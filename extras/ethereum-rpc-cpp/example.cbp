@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Irrlicht Pong" />
+		<Option pch_mode="0" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="default">
+				<Option output="./Pong" prefix_auto="0" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option projectResourceIncludeDirsRelation="1" />
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="All" targets="default;" />
+		</VirtualTargets>
+		<Compiler>
+			<Add directory="/home/Dev/libs/game/Irrlicht-SVN/include" />
+		</Compiler>
+		<Linker>
+			<Add library="Xxf86vm" />
+			<Add library="X11" />
+			<Add library="jsonrpccpp-client" />
+			<Add library="jsoncpp" />
+			<Add library="curl" />
+			<Add directory="/home/Dev/libs/game/Irrlicht-SVN/lib/Linux" />
+		</Linker>
+		<Unit filename="api.cpp" />
+		<Unit filename="api.hpp" />
+		<Unit filename="crypto/cr_types.h" />
+		<Unit filename="crypto/curve-specific.inc" />
+		<Unit filename="crypto/keccak256.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/keccak256.h" />
+		<Unit filename="crypto/platform-specific.inc" />
+		<Unit filename="crypto/uECC.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/uECC.h" />
+		<Unit filename="crypto/uECC_vli.h" />
+		<Unit filename="factory.cpp" />
+		<Unit filename="factory.hpp" />
+		<Unit filename="rlp/RLP.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rlp/RLP.h" />
+		<Unit filename="rlp/tx.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rlp/tx.h" />
+		<Unit filename="types.hpp" />
+		<Unit filename="utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="utils.h" />
+		<Unit filename="wrapper.cpp" />
+		<Unit filename="wrapper.hpp" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

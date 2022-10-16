@@ -1,0 +1,199 @@
+# depslib dependency file v1.0
+1653491429 source:/home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/crypto/keccak256.c
+	"keccak256.h"
+	<string.h>
+	<stdint.h>
+
+1653491429 /home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/crypto/keccak256.h
+	<stdint.h>
+
+1653491429 source:/home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/crypto/uECC.c
+	"uECC.h"
+	"uECC_vli.h"
+	"platform-specific.inc"
+	"asm_arm.inc"
+	"asm_avr.inc"
+	"curve-specific.inc"
+
+1653491429 /home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/crypto/uECC.h
+	<stdint.h>
+
+1653491429 /home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/crypto/uECC_vli.h
+	"uECC.h"
+	"cr_types.h"
+
+1653491429 /home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/crypto/cr_types.h
+
+1653491429 /home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/crypto/platform-specific.inc
+	"cr_types.h"
+	<windows.h>
+	<wincrypt.h>
+	<sys/types.h>
+	<fcntl.h>
+	<unistd.h>
+
+1653491429 /home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/crypto/curve-specific.inc
+
+1653491429 source:/home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/api.cpp
+	"api.hpp"
+
+1665711622 /home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/api.hpp
+	"wrapper.hpp"
+	"jsoncpp/json/json.h"
+	"types.hpp"
+
+1665712242 /home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/wrapper.hpp
+	"api.hpp"
+	"factory.hpp"
+	"jsoncpp/json/json.h"
+	<string>
+	<cstdio>
+
+1665711631 /home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/factory.hpp
+	"wrapper.hpp"
+	"jsoncpp/json/json.h"
+
+1653491429 /home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/types.hpp
+	<iostream>
+	<boost/multiprecision/cpp_int.hpp>
+
+1653491429 source:/home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/factory.cpp
+	"factory.hpp"
+	"crypto/keccak256.h"
+	"crypto/uECC.h"
+	"rlp/tx.h"
+
+1665711860 /home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/rlp/tx.h
+	"RLP.h"
+
+1653491429 /home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/rlp/RLP.h
+	<stdbool.h>
+	<stdint.h>
+	"../utils.h"
+
+1653491429 /home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/utils.h
+	<stdint.h>
+
+1665711885 source:/home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/rlp/RLP.c
+	<stdlib.h>
+	<string.h>
+	"RLP.h"
+
+1665712339 source:/home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/rlp/tx.c
+	"tx.h"
+	"../utils.h"
+	"../crypto/keccak256.h"
+	"../crypto/uECC.h"
+	<stddef.h>
+
+1653491429 source:/home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/utils.c
+	"utils.h"
+
+1653491429 source:/home/netpipe/Desktop/cryptoCoins/ethereum-rpc-cpp/src/wrapper.cpp
+	<curl/curl.h>
+	<iostream>
+	<memory>
+	<string.h>
+	<sstream>
+	<iomanip>
+	"wrapper.hpp"
+
+1653491429 source:/home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/api.cpp
+	"api.hpp"
+
+1665711622 /home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/api.hpp
+	"wrapper.hpp"
+	"jsoncpp/json/json.h"
+	"types.hpp"
+
+1665712242 /home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/wrapper.hpp
+	"api.hpp"
+	"factory.hpp"
+	"jsoncpp/json/json.h"
+	<string>
+	<cstdio>
+
+1665711631 /home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/factory.hpp
+	"wrapper.hpp"
+	"jsoncpp/json/json.h"
+
+1653491429 /home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/types.hpp
+	<iostream>
+	<boost/multiprecision/cpp_int.hpp>
+
+1653491429 source:/home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/crypto/keccak256.c
+	"keccak256.h"
+	<string.h>
+	<stdint.h>
+
+1653491429 /home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/crypto/keccak256.h
+	<stdint.h>
+
+1653491429 source:/home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/crypto/uECC.c
+	"uECC.h"
+	"uECC_vli.h"
+	"platform-specific.inc"
+	"asm_arm.inc"
+	"asm_avr.inc"
+	"curve-specific.inc"
+
+1653491429 /home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/crypto/uECC.h
+	<stdint.h>
+
+1653491429 /home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/crypto/uECC_vli.h
+	"uECC.h"
+	"cr_types.h"
+
+1653491429 /home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/crypto/cr_types.h
+
+1653491429 /home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/crypto/platform-specific.inc
+	"cr_types.h"
+	<windows.h>
+	<wincrypt.h>
+	<sys/types.h>
+	<fcntl.h>
+	<unistd.h>
+
+1653491429 /home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/crypto/curve-specific.inc
+
+1653491429 source:/home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/factory.cpp
+	"factory.hpp"
+	"crypto/keccak256.h"
+	"crypto/uECC.h"
+	"rlp/tx.h"
+
+1665711860 /home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/rlp/tx.h
+	"RLP.h"
+
+1653491429 /home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/rlp/RLP.h
+	<stdbool.h>
+	<stdint.h>
+	"../utils.h"
+
+1653491429 /home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/utils.h
+	<stdint.h>
+
+1665711885 source:/home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/rlp/RLP.c
+	<stdlib.h>
+	<string.h>
+	"RLP.h"
+
+1665712339 source:/home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/rlp/tx.c
+	"tx.h"
+	"../utils.h"
+	"../crypto/keccak256.h"
+	"../crypto/uECC.h"
+	<stddef.h>
+
+1653491429 source:/home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/utils.c
+	"utils.h"
+
+1653491429 source:/home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src3/wrapper.cpp
+	<curl/curl.h>
+	<iostream>
+	<memory>
+	<string.h>
+	<sstream>
+	<iomanip>
+	"wrapper.hpp"
+

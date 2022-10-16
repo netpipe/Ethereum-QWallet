@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1511268461 source:/home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src/ethereum-cpp-rpc-calls.cpp
+	<iostream>
+	"ethereumapi.h"
+	<jsonrpccpp/client/connectors/httpclient.h>
+
+1511268461 /home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src/ethereumapi.h
+	"types.h"
+	<jsonrpccpp/client.h>
+
+1511268461 /home/netpipe/Desktop/ethereum-cpp-rpc-calls-master/src/types.h
+	<string>
+	<vector>
+
