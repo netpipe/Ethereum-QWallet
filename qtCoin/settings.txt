@@ -1,0 +1,17 @@
+CoinName:CookieCoin
+CoinCount:10000
+CoinLength:8
+createday:1
+CreateMonth: Aug
+createyear:0
+createtime:2|29
+coinvalue:.25
+matures:Yes
+coinpayout:1.00
+encrypted:Yes
+maturedate:1
+maturemonth:Aug
+matureyear:2020
+maturetime:0|0
+maturedescription:What the investment will be based on
+usbdrivename:

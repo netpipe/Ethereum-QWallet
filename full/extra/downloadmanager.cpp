@@ -172,22 +172,22 @@ accessManager->put(request, byte_file);
 }
 #endif
 
-void DownloadManager::Download(QString URL){
-    // QUrl url{"https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"};
-#if DOWNLOAD
-    QUrl url{URL};
-    //  URL = "\"https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png\"";
-    // QUrl url;
-    // url.setPath(URL);
+//void DownloadManager::Download(QString URL){
+//    // QUrl url{"https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"};
+//#if DOWNLOAD
+//    QUrl url{URL};
+//    //  URL = "\"https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png\"";
+//    // QUrl url;
+//    // url.setPath(URL);
 
-    //    url.setPassword("12345");
-    //   url.setUserName("qt");
+//    //    url.setPassword("12345");
+//    //   url.setUserName("qt");
 
-    // QString URL2 = "\""+url+"\"";  //url.toString();
-    // fromStdString()
+//    // QString URL2 = "\""+url+"\"";  //url.toString();
+//    // fromStdString()
 
-        doDownload(url);
+//        doDownload(url);
 
-    //    manager.replaceFile("./new.exe","./S.exe");
-#endif
-}
+//    //    manager.replaceFile("./new.exe","./S.exe");
+//#endif
+//}
