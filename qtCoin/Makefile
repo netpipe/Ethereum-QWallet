@@ -37,10 +37,10 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = qtCoin1.0.0
-DISTDIR = /home/netpipe/Desktop/EcoCoin/qtCoin/.tmp/qtCoin1.0.0
+DISTDIR = /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/.tmp/qtCoin1.0.0
 LINK          = g++
 LFLAGS        = 
-LIBS          = $(SUBLIBS) -lglut -lGL -lGLU -lpng -ljpeg /usr/lib/x86_64-linux-gnu/libQt5PrintSupport.so /usr/lib/x86_64-linux-gnu/libQt5Svg.so /usr/lib/x86_64-linux-gnu/libQt5OpenGL.so /usr/lib/x86_64-linux-gnu/libQt5Widgets.so /usr/lib/x86_64-linux-gnu/libQt5Multimedia.so /usr/lib/x86_64-linux-gnu/libQt5Gui.so /usr/lib/x86_64-linux-gnu/libQt5Sql.so /usr/lib/x86_64-linux-gnu/libQt5Network.so /usr/lib/x86_64-linux-gnu/libQt5DBus.so /usr/lib/x86_64-linux-gnu/libQt5Core.so /usr/lib/x86_64-linux-gnu/libGL.so -lpthread   
+LIBS          = $(SUBLIBS) -lglut -lGL -lGLU -lpng -ljpeg -ljsonrpccpp-client -ljsoncpp -lcurl /usr/lib/x86_64-linux-gnu/libQt5PrintSupport.so /usr/lib/x86_64-linux-gnu/libQt5Svg.so /usr/lib/x86_64-linux-gnu/libQt5OpenGL.so /usr/lib/x86_64-linux-gnu/libQt5Widgets.so /usr/lib/x86_64-linux-gnu/libQt5Multimedia.so /usr/lib/x86_64-linux-gnu/libQt5Gui.so /usr/lib/x86_64-linux-gnu/libQt5Sql.so /usr/lib/x86_64-linux-gnu/libQt5Network.so /usr/lib/x86_64-linux-gnu/libQt5DBus.so /usr/lib/x86_64-linux-gnu/libQt5Core.so /usr/lib/x86_64-linux-gnu/libGL.so -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -54,6 +54,14 @@ OBJECTS_DIR   = ./
 
 SOURCES       = main.cpp \
 		mainwindow.cpp \
+		src/ethereum/api.cpp \
+		src/ethereum/crypto/keccak256.c \
+		src/ethereum/crypto/uECC.c \
+		src/ethereum/factory.cpp \
+		src/ethereum/rlp/RLP.c \
+		src/ethereum/rlp/tx.c \
+		src/ethereum/utils.c \
+		src/ethereum/wrapper.cpp \
 		src/qstylesheetmanager.cpp \
 		src/downloadmanager.cpp \
 		src/encryption/rsa/Rsa.cpp \
@@ -143,6 +151,14 @@ SOURCES       = main.cpp \
 		moc_quazipfile.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		api.o \
+		keccak256.o \
+		uECC.o \
+		factory.o \
+		RLP.o \
+		tx.o \
+		utils.o \
+		wrapper.o \
 		qstylesheetmanager.o \
 		downloadmanager.o \
 		Rsa.o \
@@ -232,6 +248,7 @@ OBJECTS       = main.o \
 		moc_quaziodevice.o \
 		moc_quazipfile.o
 DIST          = qtCoin.ico \
+		src/ethereum/LICENSE \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -301,6 +318,7 @@ DIST          = qtCoin.ico \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -324,6 +342,19 @@ DIST          = qtCoin.ico \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		qtCoin.pro mainwindow.h \
+		src/ethereum/api.hpp \
+		src/ethereum/crypto/cr_types.h \
+		src/ethereum/crypto/curve-specific.inc \
+		src/ethereum/crypto/keccak256.h \
+		src/ethereum/crypto/platform-specific.inc \
+		src/ethereum/crypto/uECC.h \
+		src/ethereum/crypto/uECC_vli.h \
+		src/ethereum/factory.hpp \
+		src/ethereum/rlp/RLP.h \
+		src/ethereum/rlp/tx.h \
+		src/ethereum/types.hpp \
+		src/ethereum/utils.h \
+		src/ethereum/wrapper.hpp \
 		src/qstylesheetmanager.h \
 		src/loadtheme.h \
 		src/downloadmanager.h \
@@ -398,6 +429,14 @@ DIST          = qtCoin.ico \
 		src/zlib/zutil.h \
 		src/oglwidget.h main.cpp \
 		mainwindow.cpp \
+		src/ethereum/api.cpp \
+		src/ethereum/crypto/keccak256.c \
+		src/ethereum/crypto/uECC.c \
+		src/ethereum/factory.cpp \
+		src/ethereum/rlp/RLP.c \
+		src/ethereum/rlp/tx.c \
+		src/ethereum/utils.c \
+		src/ethereum/wrapper.cpp \
 		src/qstylesheetmanager.cpp \
 		src/downloadmanager.cpp \
 		src/encryption/rsa/Rsa.cpp \
@@ -540,6 +579,7 @@ Makefile: qtCoin.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf 
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -633,6 +673,7 @@ Makefile: qtCoin.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -671,8 +712,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h src/qstylesheetmanager.h src/loadtheme.h src/downloadmanager.h src/encryption/rsa/Rsa.h src/encryption/Qt-AES/qaesencryption.h src/encryption/encryption.h src/smtp/SmtpMime src/smtp/smtpexports.h src/smtp/smtpclient.h src/smtp/quotedprintable.h src/smtp/mimetext.h src/smtp/mimepart.h src/smtp/mimemultipart.h src/smtp/mimemessage.h src/smtp/mimeinlinefile.h src/smtp/mimehtml.h src/smtp/mimefile.h src/smtp/mimecontentformatter.h src/smtp/mimeattachment.h src/smtp/emailaddress.h src/encryption/simpleCrypt/simplecrypt.h src/coinfunctions.h src/validatecoins.h src/coingenerator.h src/QRCode/QrCode.hpp src/Barcode/functii.h src/dbus/dbushandler.h src/Barcode/quirc/lib/quirc.h src/Barcode/quirc/lib/quirc_internal.h src/Barcode/quirc/tests/dbgutil.h src/Barcode/quirc/tests/inspect.h src/admin.h src/wallet.h src/email.h src/ssl.h src/devices.h src/ftp-server/dataconnection.h src/ftp-server/debuglogdialog.h src/ftp-server/ftpcommand.h src/ftp-server/ftpcontrolconnection.h src/ftp-server/ftplistcommand.h src/ftp-server/ftpretrcommand.h src/ftp-server/ftpserver.h src/ftp-server/ftpstorcommand.h src/ftp-server/sslserver.h src/ftp-server/ftpgui.h src/quazip/ioapi.h src/quazip/JlCompress.h src/quazip/quaadler32.h src/quazip/quachecksum32.h src/quazip/quacrc32.h src/quazip/quagzipfile.h src/quazip/quaziodevice.h src/quazip/quazip.h src/quazip/quazipdir.h src/quazip/quazipfile.h src/quazip/quazipfileinfo.h src/quazip/quazip_global.h src/quazip/quazipnewinfo.h src/quazip/unzip.h src/quazip/zip.h src/zlib/crc32.h src/zlib/deflate.h src/zlib/gzguts.h src/zlib/inffast.h src/zlib/inffixed.h src/zlib/inflate.h src/zlib/inftrees.h src/zlib/trees.h src/zlib/zconf.h src/zlib/zlib.h src/zlib/zutil.h src/oglwidget.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp src/qstylesheetmanager.cpp src/downloadmanager.cpp src/encryption/rsa/Rsa.cpp src/encryption/Qt-AES/qaesencryption.cpp src/encryption/simpleCrypt/simplecrypt.cpp src/smtp/smtpclient.cpp src/smtp/quotedprintable.cpp src/smtp/mimetext.cpp src/smtp/mimepart.cpp src/smtp/mimemultipart.cpp src/smtp/mimemessage.cpp src/smtp/mimeinlinefile.cpp src/smtp/mimehtml.cpp src/smtp/mimefile.cpp src/smtp/mimecontentformatter.cpp src/smtp/mimeattachment.cpp src/smtp/emailaddress.cpp src/QRCode/QrCode.cpp src/Barcode/functii.cpp src/Barcode/quirc/lib/decode.c src/Barcode/quirc/lib/identify.c src/Barcode/quirc/lib/quirc.c src/Barcode/quirc/lib/version_db.c src/ftp-server/dataconnection.cpp src/ftp-server/debuglogdialog.cpp src/ftp-server/ftpcommand.cpp src/ftp-server/ftpcontrolconnection.cpp src/ftp-server/ftplistcommand.cpp src/ftp-server/ftpretrcommand.cpp src/ftp-server/ftpserver.cpp src/ftp-server/ftpstorcommand.cpp src/ftp-server/sslserver.cpp src/ftp-server/ftpgui.cpp src/quazip/JlCompress.cpp src/quazip/qioapi.cpp src/quazip/quaadler32.cpp src/quazip/quacrc32.cpp src/quazip/quagzipfile.cpp src/quazip/quaziodevice.cpp src/quazip/quazip.cpp src/quazip/quazipdir.cpp src/quazip/quazipfile.cpp src/quazip/quazipfileinfo.cpp src/quazip/quazipnewinfo.cpp src/quazip/unzip.c src/quazip/zip.c src/zlib/adler32.c src/zlib/compress.c src/zlib/crc32.c src/zlib/deflate.c src/zlib/gzclose.c src/zlib/gzlib.c src/zlib/gzread.c src/zlib/gzwrite.c src/zlib/infback.c src/zlib/inffast.c src/zlib/inflate.c src/zlib/inftrees.c src/zlib/trees.c src/zlib/uncompr.c src/zlib/zutil.c src/oglwidget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.h src/ethereum/api.hpp src/ethereum/crypto/cr_types.h src/ethereum/crypto/curve-specific.inc src/ethereum/crypto/keccak256.h src/ethereum/crypto/platform-specific.inc src/ethereum/crypto/uECC.h src/ethereum/crypto/uECC_vli.h src/ethereum/factory.hpp src/ethereum/rlp/RLP.h src/ethereum/rlp/tx.h src/ethereum/types.hpp src/ethereum/utils.h src/ethereum/wrapper.hpp src/qstylesheetmanager.h src/loadtheme.h src/downloadmanager.h src/encryption/rsa/Rsa.h src/encryption/Qt-AES/qaesencryption.h src/encryption/encryption.h src/smtp/SmtpMime src/smtp/smtpexports.h src/smtp/smtpclient.h src/smtp/quotedprintable.h src/smtp/mimetext.h src/smtp/mimepart.h src/smtp/mimemultipart.h src/smtp/mimemessage.h src/smtp/mimeinlinefile.h src/smtp/mimehtml.h src/smtp/mimefile.h src/smtp/mimecontentformatter.h src/smtp/mimeattachment.h src/smtp/emailaddress.h src/encryption/simpleCrypt/simplecrypt.h src/coinfunctions.h src/validatecoins.h src/coingenerator.h src/QRCode/QrCode.hpp src/Barcode/functii.h src/dbus/dbushandler.h src/Barcode/quirc/lib/quirc.h src/Barcode/quirc/lib/quirc_internal.h src/Barcode/quirc/tests/dbgutil.h src/Barcode/quirc/tests/inspect.h src/admin.h src/wallet.h src/email.h src/ssl.h src/devices.h src/ftp-server/dataconnection.h src/ftp-server/debuglogdialog.h src/ftp-server/ftpcommand.h src/ftp-server/ftpcontrolconnection.h src/ftp-server/ftplistcommand.h src/ftp-server/ftpretrcommand.h src/ftp-server/ftpserver.h src/ftp-server/ftpstorcommand.h src/ftp-server/sslserver.h src/ftp-server/ftpgui.h src/quazip/ioapi.h src/quazip/JlCompress.h src/quazip/quaadler32.h src/quazip/quachecksum32.h src/quazip/quacrc32.h src/quazip/quagzipfile.h src/quazip/quaziodevice.h src/quazip/quazip.h src/quazip/quazipdir.h src/quazip/quazipfile.h src/quazip/quazipfileinfo.h src/quazip/quazip_global.h src/quazip/quazipnewinfo.h src/quazip/unzip.h src/quazip/zip.h src/zlib/crc32.h src/zlib/deflate.h src/zlib/gzguts.h src/zlib/inffast.h src/zlib/inffixed.h src/zlib/inflate.h src/zlib/inftrees.h src/zlib/trees.h src/zlib/zconf.h src/zlib/zlib.h src/zlib/zutil.h src/oglwidget.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp src/ethereum/api.cpp src/ethereum/crypto/keccak256.c src/ethereum/crypto/uECC.c src/ethereum/factory.cpp src/ethereum/rlp/RLP.c src/ethereum/rlp/tx.c src/ethereum/utils.c src/ethereum/wrapper.cpp src/qstylesheetmanager.cpp src/downloadmanager.cpp src/encryption/rsa/Rsa.cpp src/encryption/Qt-AES/qaesencryption.cpp src/encryption/simpleCrypt/simplecrypt.cpp src/smtp/smtpclient.cpp src/smtp/quotedprintable.cpp src/smtp/mimetext.cpp src/smtp/mimepart.cpp src/smtp/mimemultipart.cpp src/smtp/mimemessage.cpp src/smtp/mimeinlinefile.cpp src/smtp/mimehtml.cpp src/smtp/mimefile.cpp src/smtp/mimecontentformatter.cpp src/smtp/mimeattachment.cpp src/smtp/emailaddress.cpp src/QRCode/QrCode.cpp src/Barcode/functii.cpp src/Barcode/quirc/lib/decode.c src/Barcode/quirc/lib/identify.c src/Barcode/quirc/lib/quirc.c src/Barcode/quirc/lib/version_db.c src/ftp-server/dataconnection.cpp src/ftp-server/debuglogdialog.cpp src/ftp-server/ftpcommand.cpp src/ftp-server/ftpcontrolconnection.cpp src/ftp-server/ftplistcommand.cpp src/ftp-server/ftpretrcommand.cpp src/ftp-server/ftpserver.cpp src/ftp-server/ftpstorcommand.cpp src/ftp-server/sslserver.cpp src/ftp-server/ftpgui.cpp src/quazip/JlCompress.cpp src/quazip/qioapi.cpp src/quazip/quaadler32.cpp src/quazip/quacrc32.cpp src/quazip/quagzipfile.cpp src/quazip/quaziodevice.cpp src/quazip/quazip.cpp src/quazip/quazipdir.cpp src/quazip/quazipfile.cpp src/quazip/quazipfileinfo.cpp src/quazip/quazipnewinfo.cpp src/quazip/unzip.c src/quazip/zip.c src/zlib/adler32.c src/zlib/compress.c src/zlib/crc32.c src/zlib/deflate.c src/zlib/gzclose.c src/zlib/gzlib.c src/zlib/gzread.c src/zlib/gzwrite.c src/zlib/infback.c src/zlib/inffast.c src/zlib/inflate.c src/zlib/inftrees.c src/zlib/trees.c src/zlib/uncompr.c src/zlib/zutil.c src/oglwidget.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui src/ftp-server/debuglogdialog.ui src/ftp-server/ftpgui.ui $(DISTDIR)/
 
 
@@ -713,17 +754,17 @@ moc_mainwindow.cpp: mainwindow.h \
 		src/dbus/dbushandler.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
 
 moc_downloadmanager.cpp: src/downloadmanager.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/downloadmanager.h -o moc_downloadmanager.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/downloadmanager.h -o moc_downloadmanager.cpp
 
 moc_qaesencryption.cpp: src/encryption/Qt-AES/qaesencryption.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/encryption/Qt-AES/qaesencryption.h -o moc_qaesencryption.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/encryption/Qt-AES/qaesencryption.h -o moc_qaesencryption.cpp
 
 moc_smtpclient.cpp: src/smtp/smtpclient.h \
 		src/smtp/mimemessage.h \
@@ -734,20 +775,20 @@ moc_smtpclient.cpp: src/smtp/smtpclient.h \
 		src/smtp/emailaddress.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/smtpclient.h -o moc_smtpclient.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/smtpclient.h -o moc_smtpclient.cpp
 
 moc_quotedprintable.cpp: src/smtp/quotedprintable.h \
 		src/smtp/smtpexports.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/quotedprintable.h -o moc_quotedprintable.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/quotedprintable.h -o moc_quotedprintable.cpp
 
 moc_mimepart.cpp: src/smtp/mimepart.h \
 		src/smtp/mimecontentformatter.h \
 		src/smtp/smtpexports.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/mimepart.h -o moc_mimepart.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/mimepart.h -o moc_mimepart.cpp
 
 moc_mimemultipart.cpp: src/smtp/mimemultipart.h \
 		src/smtp/mimepart.h \
@@ -755,7 +796,7 @@ moc_mimemultipart.cpp: src/smtp/mimemultipart.h \
 		src/smtp/smtpexports.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/mimemultipart.h -o moc_mimemultipart.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/mimemultipart.h -o moc_mimemultipart.cpp
 
 moc_mimehtml.cpp: src/smtp/mimehtml.h \
 		src/smtp/mimetext.h \
@@ -764,7 +805,7 @@ moc_mimehtml.cpp: src/smtp/mimehtml.h \
 		src/smtp/smtpexports.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/mimehtml.h -o moc_mimehtml.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/mimehtml.h -o moc_mimehtml.cpp
 
 moc_mimefile.cpp: src/smtp/mimefile.h \
 		src/smtp/mimepart.h \
@@ -772,13 +813,13 @@ moc_mimefile.cpp: src/smtp/mimefile.h \
 		src/smtp/smtpexports.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/mimefile.h -o moc_mimefile.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/mimefile.h -o moc_mimefile.cpp
 
 moc_mimecontentformatter.cpp: src/smtp/mimecontentformatter.h \
 		src/smtp/smtpexports.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/mimecontentformatter.h -o moc_mimecontentformatter.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/mimecontentformatter.h -o moc_mimecontentformatter.cpp
 
 moc_mimeattachment.cpp: src/smtp/mimeattachment.h \
 		src/smtp/mimepart.h \
@@ -787,83 +828,83 @@ moc_mimeattachment.cpp: src/smtp/mimeattachment.h \
 		src/smtp/mimefile.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/mimeattachment.h -o moc_mimeattachment.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/mimeattachment.h -o moc_mimeattachment.cpp
 
 moc_emailaddress.cpp: src/smtp/emailaddress.h \
 		src/smtp/smtpexports.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/emailaddress.h -o moc_emailaddress.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/smtp/emailaddress.h -o moc_emailaddress.cpp
 
 moc_dbushandler.cpp: src/dbus/dbushandler.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/dbus/dbushandler.h -o moc_dbushandler.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/dbus/dbushandler.h -o moc_dbushandler.cpp
 
 moc_dataconnection.cpp: src/ftp-server/dataconnection.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/dataconnection.h -o moc_dataconnection.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/dataconnection.h -o moc_dataconnection.cpp
 
 moc_debuglogdialog.cpp: src/ftp-server/debuglogdialog.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/debuglogdialog.h -o moc_debuglogdialog.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/debuglogdialog.h -o moc_debuglogdialog.cpp
 
 moc_ftpcommand.cpp: src/ftp-server/ftpcommand.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/ftpcommand.h -o moc_ftpcommand.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/ftpcommand.h -o moc_ftpcommand.cpp
 
 moc_ftpcontrolconnection.cpp: src/ftp-server/ftpcontrolconnection.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/ftpcontrolconnection.h -o moc_ftpcontrolconnection.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/ftpcontrolconnection.h -o moc_ftpcontrolconnection.cpp
 
 moc_ftplistcommand.cpp: src/ftp-server/ftplistcommand.h \
 		src/ftp-server/ftpcommand.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/ftplistcommand.h -o moc_ftplistcommand.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/ftplistcommand.h -o moc_ftplistcommand.cpp
 
 moc_ftpretrcommand.cpp: src/ftp-server/ftpretrcommand.h \
 		src/ftp-server/ftpcommand.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/ftpretrcommand.h -o moc_ftpretrcommand.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/ftpretrcommand.h -o moc_ftpretrcommand.cpp
 
 moc_ftpserver.cpp: src/ftp-server/ftpserver.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/ftpserver.h -o moc_ftpserver.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/ftpserver.h -o moc_ftpserver.cpp
 
 moc_ftpstorcommand.cpp: src/ftp-server/ftpstorcommand.h \
 		src/ftp-server/ftpcommand.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/ftpstorcommand.h -o moc_ftpstorcommand.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/ftpstorcommand.h -o moc_ftpstorcommand.cpp
 
 moc_sslserver.cpp: src/ftp-server/sslserver.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/sslserver.h -o moc_sslserver.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/sslserver.h -o moc_sslserver.cpp
 
 moc_ftpgui.cpp: src/ftp-server/ftpgui.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/ftpgui.h -o moc_ftpgui.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/ftp-server/ftpgui.h -o moc_ftpgui.cpp
 
 moc_quagzipfile.cpp: src/quazip/quagzipfile.h \
 		src/quazip/quazip_global.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/quazip/quagzipfile.h -o moc_quagzipfile.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/quazip/quagzipfile.h -o moc_quagzipfile.cpp
 
 moc_quaziodevice.cpp: src/quazip/quaziodevice.h \
 		src/quazip/quazip_global.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/quazip/quaziodevice.h -o moc_quaziodevice.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/quazip/quaziodevice.h -o moc_quaziodevice.cpp
 
 moc_quazipfile.cpp: src/quazip/quazipfile.h \
 		src/quazip/quazip_global.h \
@@ -875,7 +916,7 @@ moc_quazipfile.cpp: src/quazip/quazipfile.h \
 		src/quazip/quazipnewinfo.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/EcoCoin/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/EcoCoin/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/quazip/quazipfile.h -o moc_quazipfile.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/cryptoCoins/Ethereum-QWallet/qtCoin -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/quazip/quazipfile.h -o moc_quazipfile.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -960,6 +1001,53 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		src/ftp-server/ftpgui.h \
 		src/oglwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
+
+api.o: src/ethereum/api.cpp src/ethereum/api.hpp \
+		src/ethereum/wrapper.hpp \
+		src/ethereum/factory.hpp \
+		src/ethereum/types.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o api.o src/ethereum/api.cpp
+
+keccak256.o: src/ethereum/crypto/keccak256.c src/ethereum/crypto/keccak256.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o keccak256.o src/ethereum/crypto/keccak256.c
+
+uECC.o: src/ethereum/crypto/uECC.c src/ethereum/crypto/uECC.h \
+		src/ethereum/crypto/uECC_vli.h \
+		src/ethereum/crypto/cr_types.h \
+		src/ethereum/crypto/platform-specific.inc \
+		src/ethereum/crypto/curve-specific.inc
+	$(CC) -c $(CFLAGS) $(INCPATH) -o uECC.o src/ethereum/crypto/uECC.c
+
+factory.o: src/ethereum/factory.cpp src/ethereum/factory.hpp \
+		src/ethereum/wrapper.hpp \
+		src/ethereum/api.hpp \
+		src/ethereum/types.hpp \
+		src/ethereum/crypto/keccak256.h \
+		src/ethereum/crypto/uECC.h \
+		src/ethereum/rlp/tx.h \
+		src/ethereum/rlp/RLP.h \
+		src/ethereum/utils.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factory.o src/ethereum/factory.cpp
+
+RLP.o: src/ethereum/rlp/RLP.c src/ethereum/rlp/RLP.h \
+		src/ethereum/utils.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o RLP.o src/ethereum/rlp/RLP.c
+
+tx.o: src/ethereum/rlp/tx.c src/ethereum/rlp/tx.h \
+		src/ethereum/rlp/RLP.h \
+		src/ethereum/utils.h \
+		src/ethereum/crypto/keccak256.h \
+		src/ethereum/crypto/uECC.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o tx.o src/ethereum/rlp/tx.c
+
+utils.o: src/ethereum/utils.c src/ethereum/utils.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o utils.o src/ethereum/utils.c
+
+wrapper.o: src/ethereum/wrapper.cpp src/ethereum/wrapper.hpp \
+		src/ethereum/api.hpp \
+		src/ethereum/types.hpp \
+		src/ethereum/factory.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o wrapper.o src/ethereum/wrapper.cpp
 
 qstylesheetmanager.o: src/qstylesheetmanager.cpp src/qstylesheetmanager.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qstylesheetmanager.o src/qstylesheetmanager.cpp

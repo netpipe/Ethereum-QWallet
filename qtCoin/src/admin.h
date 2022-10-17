@@ -608,8 +608,8 @@ void MainWindow::on_addUserQR_clicked()
     QString fileName= QFileDialog::getSaveFileName(this, "Save image", QCoreApplication::applicationDirPath(), "BMP Files (*.bmp);;JPEG (*.JPEG);;PNG (*.png)" );
         if (!fileName.isNull())
         {
-            QPixmap pixMap = this->ui->usergenerateQr->grab();
-            pixMap.save(fileName);
+            //QPixmap pixMap = this->ui->usergenerateQr->grab();
+            //pixMap.save(fileName);
         }
 }
 

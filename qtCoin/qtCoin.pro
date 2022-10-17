@@ -15,7 +15,8 @@ QT += multimedia svg dbus network opengl
 CONFIG += barcodescan
 #unix:!macx:CONFIG += barcodescan
 barcodescan{
-LIBS+= -lpng -ljpeg
+LIBS+= -lpng -ljpeg -ljsonrpccpp-client -ljsoncpp -lcurl
+
 DEFINES += BARCODE
 }
 //INCLUDEPATH
@@ -26,6 +27,7 @@ win32 {
 DEFINES += SOUND DBUS DOWNLOAD SMTP STORAGE FTP
 QT += multimedia svg dbus network
 CONFIG += barcodescan
+LIBS += -ljsonrpccpp-client -ljsoncpp -lcurl
 }
 
 wasm-emscripten {
