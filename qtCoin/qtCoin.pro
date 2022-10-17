@@ -143,6 +143,7 @@ HEADERS  += mainwindow.h \
     src/encryption/rsa/Rsa.h \
     src/encryption/Qt-AES/qaesencryption.h \
     src/encryption/encryption.h \
+    src/qtpython.h \
     src/smtp/SmtpMime \
     src/smtp/smtpexports.h \
     src/smtp/smtpclient.h \

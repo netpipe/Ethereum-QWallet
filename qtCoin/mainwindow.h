@@ -240,6 +240,9 @@ private slots:
 
     void on_userssearch_clicked();
 
+    void on_pyrun_clicked();
+
+    void qtPython();
 
     void on_balancetest_clicked();
 
@@ -267,6 +270,8 @@ private:
     QSqlDatabase coinDB;
 
     DBusHandler *m_hDbus;
+
+
 };
 
 #endif // MAINWINDOW_H

@@ -19,7 +19,7 @@
 #include "src/email.h"
 #include "src/ftp-server/ftpgui.h"
 #include <src/oglwidget.h>
-
+#include <src/qtpython.h>
 
 //references and links
 //https://doc.qt.io/qt-5/sql-sqlstatements.html
@@ -361,4 +361,11 @@ void MainWindow::on_updateVerify_clicked()
     //download all databases for verification of coins offline - still succeptable to double spend but atleast its able to work without server.
     //possibly place usersigned coins they would like to spend that day into a pickup database for the server to hold for them temporary holding when doing offline tx's
 manager.Upload("ftp://127.0.0.1","admin","qt","8258","./ftp.ini");
+}
+
+void MainWindow::on_pyrun_clicked()
+{
+    qtPython();
+ //   settext();
+
 }
