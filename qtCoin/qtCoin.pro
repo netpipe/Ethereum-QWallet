@@ -9,13 +9,13 @@ LIBS += -lglut -lGL -lGLU
 
 #emscripten
 linux {
-DEFINES += zlib QUAZIP DOWNLOAD SMTP SOUND DBUS STORAGE FTP OPENGL
+DEFINES += zlib QUAZIP DOWNLOAD SMTP SOUND DBUS STORAGE FTP OPENGL PYTHON TAR1
 #DEFINES += DOWNLOAD SMTP SOUND STORAGE FTP
 QT += multimedia svg dbus network opengl
 CONFIG += barcodescan
 #unix:!macx:CONFIG += barcodescan
 barcodescan{
-LIBS+= -lpng -ljpeg -ljsonrpccpp-client -ljsoncpp -lcurl
+LIBS+= -lpng -ljpeg -ljsonrpccpp-client -ljsoncpp -lcurl -lpython2.7
 
 DEFINES += BARCODE
 }
@@ -23,11 +23,12 @@ DEFINES += BARCODE
 
 }
 
+
 win32 {
-DEFINES += SOUND DBUS DOWNLOAD SMTP STORAGE FTP
-QT += multimedia svg dbus network
+DEFINES += SOUND DBUS DOWNLOAD SMTP STORAGE FTP PYTHON
+QT += multimedia svg dbus network 
 CONFIG += barcodescan
-LIBS += -ljsonrpccpp-client -ljsoncpp -lcurl
+LIBS += -ljsonrpccpp-client -ljsoncpp -lcurl -lpython2.7
 }
 
 wasm-emscripten {
