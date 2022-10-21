@@ -2,6 +2,7 @@
 #include "crypto/keccak256.h"
 #include "crypto/uECC.h"
 #include "rlp/tx.h"
+#include <QDebug>
 
 constexpr unsigned int HASH_LENGTH = 32;
 constexpr unsigned int SIGNATURE_LENGTH = 64;
@@ -157,6 +158,8 @@ Keypair Factory::CreatePair()
 
 	std::string publicKey(pubBuf);
 	std::string privateKey(privBuf);
+
+    qDebug() << publicKey.c_str() << privateKey.c_str();
 
 	return Keypair{
 		publicKey, privateKey

@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "api.hpp"
+
 QSystemTrayIcon *trayIcon;
 QMenu *trayIconMenu;
 MainWindow::MainWindow(QWidget *parent)
@@ -27,6 +29,12 @@ MainWindow::MainWindow(QWidget *parent)
     //trayIcon->showMessage("Test Message", "Text", QSystemTrayIcon::Information, 1000);
     //trayIcon->show();
 
+
+    Wrapper *wr=new Wrapper();
+
+    Factory *test=new Factory(wr,"testo");
+
+    test->CreatePair();
 }
 
 MainWindow::~MainWindow()
