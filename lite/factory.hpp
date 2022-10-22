@@ -25,16 +25,21 @@ public:
 		std::string& data
 	);
 	std::string WalletAddress();
-	std::string PublicKey();
+    std::string PublicKey();
 
 	std::string HashMessage(std::string& msg);
 	std::string SignMessage(std::string& msgHash);
 	bool VerifyMessage(std::string& publicKey, std::string& msgHash, std::string& signature);
 	Keypair CreatePair();
 
+        uint8_t* privateKey;
+
+        std::string publicKey2();
+        std::string privateKey2();
+
 private:
 	Wrapper* wrapper;
-	uint8_t* privateKey;
+
 
 	// Some utilities
 	uint8_t* InBytes(char* string);

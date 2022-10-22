@@ -129,7 +129,7 @@ std::string Factory::WalletAddress()
 }
 
 std::string Factory::PublicKey() {
-	uint8_t* publicKey = new uint8_t[64];
+    uint8_t* publicKey = new uint8_t[64];
 	uECC_compute_public_key(this->privateKey, publicKey, uECC_secp256k1());
 
 	char* cbuf = new char[64 * 2 + 1];
@@ -140,7 +140,7 @@ std::string Factory::PublicKey() {
 	// Cleanup
 	delete[] publicKey;
 	delete[] cbuf;
-	return s;
+    return s;
 }
 
 Keypair Factory::CreatePair()
@@ -156,13 +156,16 @@ Keypair Factory::CreatePair()
 	char* privBuf = new char[32 * 2 + 1];
 	byte_array_2_char_array(priv, 32, privBuf);
 
-	std::string publicKey(pubBuf);
-	std::string privateKey(privBuf);
+    std::string publicKey(pubBuf);
+    std::string privateKey(privBuf);
 
-    qDebug() << publicKey.c_str() << privateKey.c_str();
+   // qDebug() << publicKey.c_str() << privateKey.c_str();
+
+    //this->publicKey2 = publicKey(pubBuf);
+ // this->privateKey2 = privateKey(privBuf);
 
 	return Keypair{
-		publicKey, privateKey
+        publicKey, privateKey
 	};
 }
 

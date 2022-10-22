@@ -1,7 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "QDebug"
 
 #include "api.hpp"
+    Wrapper *wr=new Wrapper();
+
+    Factory *test=new Factory(wr,"testo");
 
 QSystemTrayIcon *trayIcon;
 QMenu *trayIconMenu;
@@ -30,11 +34,11 @@ MainWindow::MainWindow(QWidget *parent)
     //trayIcon->show();
 
 
-    Wrapper *wr=new Wrapper();
 
-    Factory *test=new Factory(wr,"testo");
+ Keypair testkeypair;
 
-    test->CreatePair();
+   testkeypair= test->CreatePair();
+   qDebug() << testkeypair.privateKey.c_str()  << testkeypair.publicKey.c_str();
 }
 
 MainWindow::~MainWindow()
@@ -71,3 +75,26 @@ void MainWindow::showMessage()
     QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon();
     trayIcon->showMessage(tr("QSatisfy"), tr("Will you smoke now..."), icon, 100);
 }
+
+void MainWindow::on_pushButton_2_clicked()
+{
+   // VerifyMessage
+ //   VerifyMessage(std::string& publicKey, std::string& msgHash, std::string& signature);
+       //    test->CreatePair();
+   // test->privateKey = "123123123";
+ //   test->PublicKey();
+
+}
+//	std::string HashMessage(std::string& msg);
+//std::string SignMessage(std::string& msgHash);
+
+
+
+//std::string Factory::CreateRawTransaction(
+//	std::string& nonce,
+//	std::string& gasPrice,
+//	std::string& gasLimit,
+//	std::string& to,
+//	std::string& value,
+//	std::string& data
+//)
