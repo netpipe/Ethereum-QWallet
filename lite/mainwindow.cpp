@@ -85,18 +85,18 @@ void MainWindow::on_pushButton_2_clicked()
    // test->privateKey = "123123123";
  //   test->PublicKey();
 
-    CreateRawTransaction(        std::string& nonce,
-        std::string& gasPrice,
-        std::string& gasLimit,
-        std::string& to,
-        std::string& value,
-        std::string& data
-    )
+//    CreateRawTransaction(        std::string& nonce,
+//        std::string& gasPrice,
+//        std::string& gasLimit,
+//        std::string& to,
+//        std::string& value,
+//        std::string& data
+//    )
 
 //CreateRawTransaction(  'nonce: "0x1e7"','gasPrice: "0x2e90edd000"', 'gasLimit: "0x30d40"','to: "0xbd064928cdd4fd67fb99880e6560978d7ca1"','value: "0xde0b6b3a7640000"',   'data: "0x"');
 
-            QString nonce= 'nonce: "' << ui->
-  CreateRawTransaction(
+//            QString nonce= 'nonce: "' << ui->
+//  CreateRawTransaction(
 
 
 
