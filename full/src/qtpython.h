@@ -31,9 +31,9 @@ QString test3;
 void ExecuteScript(QString scriptname);
 
 
-//void MainWindow::settext(){
- //   ui->label->setText(test3.toLatin1());
-//}
+void MainWindow::settext(){
+    ui->pylabel->setText(test3.toLatin1());
+}
 
 static PyObject * qt_TextBox(PyObject * self,PyObject * args)
 {

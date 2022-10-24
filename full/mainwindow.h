@@ -3,6 +3,9 @@
 #include <QSystemTrayIcon>
 
 #include <QMainWindow>
+#ifdef PYTHON
+#include <qtpython.h>
+#endif
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,6 +27,14 @@ private slots:
 
 
     void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
+signals:
+void changeTextSignal();
+        void settext();
+        void qtPython();
+
 
 private:
     Ui::MainWindow *ui;

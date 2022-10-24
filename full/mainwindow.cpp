@@ -197,3 +197,14 @@ void MainWindow::on_pushButton_clicked()
 //    execute();
 // //   showOutput();
 //}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+
+        qtPython();
+        settext();
+
+
+
+}
