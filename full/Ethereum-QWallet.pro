@@ -56,7 +56,8 @@ HEADERS += \
     src/loadtheme.h \
     src/oglwidget.h \
     src/qstylesheetmanager.h \
-    src/qtpython.h \
+    src/qtpython.h \ \
+    src/types.hpp
 
 FORMS += \
     mainwindow.ui
