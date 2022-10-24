@@ -21,6 +21,8 @@ private slots:
 
     void showMessage();
     void iconActivated(QSystemTrayIcon::ActivationReason reason);
+
+
 private:
     Ui::MainWindow *ui;
 };

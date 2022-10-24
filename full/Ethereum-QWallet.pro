@@ -1,4 +1,4 @@
-QT       += core gui multimedia
+QT       += core gui multimedia opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,17 +17,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 LIBS += -ljsonrpccpp-client -ljsoncpp -lcurl -lpython2.7
 
 SOURCES += \
-    api.cpp \
-    crypto/keccak256.c \
-    crypto/uECC.c \
-    factory.cpp \
     main.cpp \
     mainwindow.cpp \
-    rlp/RLP.c \
-    rlp/tx.c \
     src/encryption/Qt-AES/qaesencryption.cpp \
     src/encryption/rsa/Rsa.cpp \
-    src/encryption/rsa/main.cpp \
     src/encryption/simpleCrypt/simplecrypt.cpp \
     src/ethereum/api.cpp \
     src/ethereum/crypto/keccak256.c \
@@ -39,22 +32,10 @@ SOURCES += \
     src/ethereum/wrapper.cpp \
     src/loadtheme.cpp \
     src/oglwidget.cpp \
-    src/qstylesheetmanager.cpp \
-    utils.c \
-    wrapper.cpp
+    src/qstylesheetmanager.cpp
 
 HEADERS += \
-    api.hpp \
-    crypto/cr_types.h \
-    crypto/curve-specific.inc \
-    crypto/keccak256.h \
-    crypto/platform-specific.inc \
-    crypto/uECC.h \
-    crypto/uECC_vli.h \
-    factory.hpp \
     mainwindow.h \
-    rlp/RLP.h \
-    rlp/tx.h \
     src/encryption/Qt-AES/qaesencryption.h \
     src/encryption/encryption.h \
     src/encryption/rsa/Rsa.h \
@@ -76,10 +57,6 @@ HEADERS += \
     src/oglwidget.h \
     src/qstylesheetmanager.h \
     src/qtpython.h \
-    src/types.hpp \
-    types.hpp \
-    utils.h \
-    wrapper.hpp
 
 FORMS += \
     mainwindow.ui
