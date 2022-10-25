@@ -2,6 +2,12 @@
 #include "ui_mainwindow.h"
 #include "QDebug"
 
+
+#include "QJsonObject"
+#include <QJsonDocument>
+#include <QFile>
+#include <QJsonObject>
+
 #include "api.hpp"
     Wrapper *wr=new Wrapper();
 
@@ -33,7 +39,39 @@ MainWindow::MainWindow(QWidget *parent)
     //trayIcon->showMessage("Test Message", "Text", QSystemTrayIcon::Information, 1000);
     //trayIcon->show();
 
+    //   QJsonObject jsonObj ;
+QJsonObject content;
+        QJsonDocument document;
+        document.setObject( content );
+        QFile file( "test.test" );
 
+        QString mName;
+
+
+
+
+
+       if( file.open( QIODevice::ReadOnly ) )
+       {
+           QByteArray bytes = file.readAll();
+           file.close();
+
+           QJsonParseError jsonError;
+           QJsonDocument document = QJsonDocument::fromJson( bytes, &jsonError );
+           if( jsonError.error != QJsonParseError::NoError )
+           {
+               qDebug() << "fromJson failed: " ;//<< jsonError.errorString().toStdString() << endl;
+               return ;
+           }
+           if( document.isObject() )
+           {
+               QJsonObject jsonObj = document.object();
+               if (jsonObj.contains("FirstName") && jsonObj["FirstName"].isString())
+                   mName = jsonObj["FirstName"].toString();
+
+               qDebug() << mName.toLatin1() << "test";
+           }
+        }
 
  Keypair testkeypair;
 
