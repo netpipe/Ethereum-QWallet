@@ -177,22 +177,31 @@ void MainWindow::on_tosendbrt_clicked()
 //test->CreateRawTransaction(       stest.toLatin1() );
 
 
+   //test->CreateRawTransaction(  "nonce: '0x1e7'","gasPrice: '0x2e90edd000'", "gasLimit: '0x30d40'","to: '0xbd064928cdd4fd67fb99880e6560978d7ca1'","value: '0xde0b6b3a7640000'",   "data: '0x'");
 
 
-            std::string snoonce = "nonce: ";
-                   snoonce +=ui->confignonce->text().toLatin1().toStdString();
-            std::string sgasPrice = "gasPrice: ";
-            sgasPrice +=ui->gasprice->text().toStdString();
-            std::string sgasLimit = "gasLimit: ";
-            sgasLimit+=ui->gaslimit->text().toStdString();
-            std::string sto ="to: " ;
-            sto+=ui->toaddress->text().toStdString();
-            std::string svalue =  "value: ";
-            svalue+=ui->toammount->text().toStdString();
-            std::string sdata ="data: ";
-                    sdata+=ui->configdata->text().toStdString();
+//            std::string snoonce = "nonce: ";
+//                   snoonce +=ui->confignonce->text().toLatin1().toStdString();
+//            std::string sgasPrice = "gasPrice: "; // check against limit
+//            sgasPrice +=ui->gasprice->text().toStdString();
+//            std::string sgasLimit = "gasLimit: ";
+//            sgasLimit+=ui->gaslimit->text().toStdString();
+//            std::string sto ="to: " ;
+//            sto+=ui->toaddress->text().toStdString(); // check if empty value
+//            std::string svalue =  "value: ";
+//            svalue+=ui->toammount->text().toStdString(); // check max ammount // check if higher than balance
+//            std::string sdata ="data: ";
+//                    sdata+=ui->configdata->text().toStdString();
 
-    test->CreateRawTransaction(snoonce,sgasPrice,sgasLimit,sto,svalue,sdata);
+
+                    std::string snoonce = "nonce: '0x1e7'";
+                    std::string sgasPrice = "gasPrice: '0x2e90edd000'"; // check against limit
+                    std::string sgasLimit = "gasLimit: '0x30d40'";
+                    std::string sto ="to: '0xbd064928cdd4fd67fb99880e6560978d7ca1'" ;
+                    std::string svalue = "value: '0xde0b6b3a7640000'";
+                    std::string sdata ="data: '0x'";
+
+  qDebug() <<  test->CreateRawTransaction(snoonce,sgasPrice,sgasLimit,sto,svalue,sdata).c_str();
 
 }
 
