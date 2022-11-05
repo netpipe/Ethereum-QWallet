@@ -13,6 +13,8 @@
 #define uECC_VLI_API static
 #endif
 
+//#define  uECC_VLI_NATIVE_LITTLE_ENDIAN
+
 #define CONCATX(a, ...) a ## __VA_ARGS__
 #define CONCAT(a, ...) CONCATX(a, __VA_ARGS__)
 
@@ -1248,7 +1250,7 @@ static int uECC_sign_with_k(const uint8_t* private_key,
 #if uECC_VLI_NATIVE_LITTLE_ENDIAN
 	uECC_word_t* p = (uECC_word_t*)signature;
 #else
-	uECC_word_t p[uECC_MAX_WORDS * 2];
+    uECC_word_t p[uECC_MAX_WORDS * 2];
 #endif
 	uECC_word_t carry;
 	wordcount_t num_words = curve->num_words;
@@ -1289,7 +1291,7 @@ static int uECC_sign_with_k(const uint8_t* private_key,
 #if uECC_VLI_NATIVE_LITTLE_ENDIAN
 	bcopy((uint8_t*)tmp, private_key, BITS_TO_BYTES(curve->num_n_bits));
 #else
-	uECC_vli_bytesToNative(tmp, private_key, BITS_TO_BYTES(curve->num_n_bits)); /* tmp = d */
+    uECC_vli_bytesToNative(tmp, private_key, BITS_TO_BYTES(curve->num_n_bits)); /* tmp = d */
 #endif
 
 	s[num_n_words - 1] = 0;
