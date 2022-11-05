@@ -23,6 +23,10 @@ private slots:
     void iconActivated(QSystemTrayIcon::ActivationReason reason);
     void on_pushButton_2_clicked();
 
+    void on_tosendbrt_clicked();
+
+    void on_papergenera_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

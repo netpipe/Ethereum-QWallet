@@ -7,11 +7,14 @@
 #include <QJsonDocument>
 #include <QFile>
 #include <QJsonObject>
+#include <qstring.h>
 
 #include "api.hpp"
     Wrapper *wr=new Wrapper();
 
     Factory *test=new Factory(wr,"testo");
+
+     Keypair testkeypair;
 
 QSystemTrayIcon *trayIcon;
 QMenu *trayIconMenu;
@@ -73,10 +76,8 @@ QJsonObject content;
            }
         }
 
- Keypair testkeypair;
 
-   testkeypair= test->CreatePair();
-   qDebug() << testkeypair.privateKey.c_str()  << testkeypair.publicKey.c_str();
+
 
 }
 
@@ -162,3 +163,46 @@ void MainWindow::on_pushButton_2_clicked()
 //	std::string& value,
 //	std::string& data
 //)
+
+void MainWindow::on_tosendbrt_clicked()
+{
+//    QString test = ui->toaddress->text();
+//    QString stest = "nonce: " + ui->confignonce->text().toStdString() +"," +
+//       "gasPrice: " + ui->gasprice->text().toStdString()+"," +
+//       "gasLimit: " + ui->gaslimit->text().toStdString()+"," +
+//       "to: " + ui->toaddress->text().toStdString()+"," +
+//       "value: " + ui->toammount->text().toStdString()+"," +
+//       "data: " + ui->configdata->text().toStdString();
+
+//test->CreateRawTransaction(       stest.toLatin1() );
+
+
+
+
+            std::string snoonce = "nonce: ";
+                   snoonce +=ui->confignonce->text().toLatin1().toStdString();
+            std::string sgasPrice = "gasPrice: ";
+            sgasPrice +=ui->gasprice->text().toStdString();
+            std::string sgasLimit = "gasLimit: ";
+            sgasLimit+=ui->gaslimit->text().toStdString();
+            std::string sto ="to: " ;
+            sto+=ui->toaddress->text().toStdString();
+            std::string svalue =  "value: ";
+            svalue+=ui->toammount->text().toStdString();
+            std::string sdata ="data: ";
+                    sdata+=ui->configdata->text().toStdString();
+
+    test->CreateRawTransaction(snoonce,sgasPrice,sgasLimit,sto,svalue,sdata);
+
+}
+
+
+void MainWindow::on_papergenera_clicked()
+{
+    testkeypair= test->CreatePair();
+    ui->paperprivatekey_2->setText(testkeypair.privateKey.c_str());
+    ui->paperpublickey->setText(testkeypair.publicKey.c_str());
+
+    qDebug() << testkeypair.privateKey.c_str()  << testkeypair.publicKey.c_str();
+}
+

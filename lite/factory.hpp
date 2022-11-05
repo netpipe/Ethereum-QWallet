@@ -17,12 +17,12 @@ public:
 	~Factory();
 
 	std::string CreateRawTransaction(
-		std::string& nonce,
-		std::string& gasPrice,
-		std::string& gasLimit,
-		std::string& to,
-		std::string& value,
-		std::string& data
+        std::string& nonce,
+        std::string& gasPrice,
+        std::string& gasLimit,
+        std::string& to,
+        std::string& value,
+        std::string& data
 	);
 	std::string WalletAddress();
     std::string PublicKey();

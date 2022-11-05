@@ -19,21 +19,21 @@ Factory::~Factory()
 }
 
 std::string Factory::CreateRawTransaction(
-	std::string& nonce,
-	std::string& gasPrice,
-	std::string& gasLimit,
-	std::string& to,
-	std::string& value,
-	std::string& data
+    std::string& nonce,
+    std::string& gasPrice,
+    std::string& gasLimit,
+    std::string& to,
+    std::string& value,
+    std::string& data
 )
 {
 	char* rawTx = assemble_transaction(
-		nonce.c_str(),
-		gasPrice.c_str(),
-		gasLimit.c_str(),
-		to.c_str(),
-		value.c_str(),
-		data.c_str(),
+        nonce.c_str(),
+        gasPrice.c_str(),
+        gasLimit.c_str(),
+        to.c_str(),
+        value.c_str(),
+        data.c_str(),
 		1,
 		this->privateKey
 	);
