@@ -169,19 +169,7 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_tosendbrt_clicked()
 {
-//    QString test = ui->toaddress->text();
-//    QString stest = "nonce: " + ui->confignonce->text().toStdString() +"," +
-//       "gasPrice: " + ui->gasprice->text().toStdString()+"," +
-//       "gasLimit: " + ui->gaslimit->text().toStdString()+"," +
-//       "to: " + ui->toaddress->text().toStdString()+"," +
-//       "value: " + ui->toammount->text().toStdString()+"," +
-//       "data: " + ui->configdata->text().toStdString();
-
-//test->CreateRawTransaction(       stest.toLatin1() );
-
-
-   //test->CreateRawTransaction(  "nonce: '0x1e7'","gasPrice: '0x2e90edd000'", "gasLimit: '0x30d40'","to: '0xbd064928cdd4fd67fb99880e6560978d7ca1'","value: '0xde0b6b3a7640000'",   "data: '0x'");
-
+//check if wallet loaded
 
             std::string snoonce = "nonce: ";
                    snoonce +=ui->confignonce->text().toLatin1().toStdString();
@@ -218,5 +206,34 @@ void MainWindow::on_papergenera_clicked()
     ui->paperpublickey->setText(testkeypair.publicKey.c_str());
 
     qDebug() << testkeypair.privateKey.c_str()  << testkeypair.publicKey.c_str();
+}
+
+
+void MainWindow::on_papersendbutton_clicked()
+{
+    // if privatekey blank then try the keypair
+    //check balance is enough before send.
+}
+
+
+void MainWindow::on_messagesignbtn_clicked()
+{
+         testkeypair= test->CreatePair();
+    std::string test1 = ui->message->toPlainText().toStdString();
+    test->SignMessage(test1);
+}
+
+
+void MainWindow::on_messageverifybtn_clicked()
+{
+      //       test->VerifyMessage()//VerifyMessage(std::string& publicKey, std::string& msgHash, std::string& signature)
+}
+
+
+void MainWindow::on_messagehashbtn_clicked()
+{
+    std::string test1 = ui->message->toPlainText().toStdString();
+
+       ui->hash->setText( test->HashMessage(test1).c_str());
 }
 

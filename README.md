@@ -16,3 +16,5 @@ will be freelancing some of the code yet so it might be 2023 before its operatio
 https://dogechain.quickswap.exchange  has my NETCOIN or NETC token 0x4631Ef412C736F5eBA2bF8115dEbaBB65B9c2d33 for trade if you want to get some to help with infrastructure development.
 
 https://github.com/netpipe/QWallet is the bitcoin / dogecoin / litecoin version
+
+![ScreenShot](./lite/screenshot.png)

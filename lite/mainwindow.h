@@ -27,6 +27,14 @@ private slots:
 
     void on_papergenera_clicked();
 
+    void on_papersendbutton_clicked();
+
+    void on_messagesignbtn_clicked();
+
+    void on_messageverifybtn_clicked();
+
+    void on_messagehashbtn_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
