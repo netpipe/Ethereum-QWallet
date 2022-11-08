@@ -24,22 +24,26 @@ std::string Factory::CreateRawTransaction(
     std::string& gasLimit,
     std::string& to,
     std::string& value,
-    std::string& data
+    std::string& data,
+    std::string& privatekey_str
 )
 {
-	char* rawTx = assemble_transaction(
+    Keypair kkk =  CreatePair();
+    this->privateKey = this->InBytes(const_cast<char*>(privatekey_str.c_str()));
+
+    char* rawTx = assemble_transaction(
         nonce.c_str(),
         gasPrice.c_str(),
         gasLimit.c_str(),
         to.c_str(),
         value.c_str(),
         data.c_str(),
-		1,
-		this->privateKey
-	);
+        1,
+        this->privateKey
+    );
 
-	std::string s(rawTx);
-	return "0x" + s;
+    std::string s(rawTx);
+    return "0x" + s;
 }
 
 std::string Factory::HashMessage(std::string& msg)

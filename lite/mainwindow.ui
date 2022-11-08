@@ -15,7 +15,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="1">
+    <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
        <number>3</number>
@@ -356,13 +356,6 @@
         <string>Send</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_10">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_7">
-          <property name="text">
-           <string>address</string>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="1" colspan="3">
          <widget class="QLineEdit" name="toaddress">
           <property name="text">
@@ -370,17 +363,31 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_17">
-          <property name="text">
-           <string>ammount</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="1" colspan="3">
          <widget class="QLineEdit" name="toammount">
           <property name="text">
            <string>25</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="4">
+         <widget class="QPushButton" name="tosendbrt">
+          <property name="text">
+           <string>Send</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>address</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_17">
+          <property name="text">
+           <string>ammount</string>
           </property>
          </widget>
         </item>
@@ -392,18 +399,7 @@
          </widget>
         </item>
         <item row="2" column="2">
-         <widget class="QListView" name="toprivatekey">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="4">
-         <widget class="QPushButton" name="tosendbrt">
-          <property name="text">
-           <string>Send</string>
-          </property>
-         </widget>
+         <widget class="QListWidget" name="toprivatekey"/>
         </item>
        </layout>
       </widget>

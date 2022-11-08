@@ -22,7 +22,8 @@ public:
         std::string& gasLimit,
         std::string& to,
         std::string& value,
-        std::string& data
+        std::string& data,
+        std::string& privatekey_str
 	);
 	std::string WalletAddress();
     std::string PublicKey();
@@ -32,10 +33,10 @@ public:
 	bool VerifyMessage(std::string& publicKey, std::string& msgHash, std::string& signature);
 	Keypair CreatePair();
 
-        uint8_t* privateKey;
+    uint8_t* privateKey;
 
-        std::string publicKey2();
-        std::string privateKey2();
+    std::string publicKey2();
+    std::string privateKey2();
 
 private:
 	Wrapper* wrapper;

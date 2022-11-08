@@ -3,6 +3,7 @@
 #include "../crypto/keccak256.h"
 #include "../crypto/uECC.h"
 #include <stddef.h>
+#include <stdio.h>
 
 int encode_a(EthereumSignTx* msg, EthereumSig* tx, uint64_t* rawTx) {
 	EncodeEthereumSignTx new_msg;
@@ -52,10 +53,11 @@ char* assemble_transaction(
 	int chainId,
 	uint8_t* privateKey
 ) {
-	char rawTx[256];
+    char* rawTx = malloc(256);
+
 	EthereumSignTx tx;
 	EthereumSig signature;
-	uint64_t raw_tx_bytes[24];
+    uint64_t raw_tx_bytes[24];
 
 	// First layer of encoding
 	tx.nonce.size = size_of_bytes(strlen(nonce));

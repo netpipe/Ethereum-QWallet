@@ -9,7 +9,10 @@
 #include <QJsonObject>
 #include <qstring.h>
 
+#include <QStringListModel>
+
 #include "api.hpp"
+
     Wrapper *wr=new Wrapper();
 
     Factory *test=new Factory(wr,"testo");
@@ -193,16 +196,18 @@ void MainWindow::on_tosendbrt_clicked()
 //            std::string sdata ="data: ";
 //                    sdata+=ui->configdata->text().toStdString();
 
+    std::string snoonce = "nonce: '0x1e7'";
+    std::string sgasPrice = "gasPrice: '0x2e90edd000'"; // check against limit
+    std::string sgasLimit = "gasLimit: '0x30d40'";
+    std::string sto ="to: '0xbd064928cdd4fd67fb99880e6560978d7ca1'" ;
+    std::string svalue = "value: '0xde0b6b3a7640000'";
+    std::string sdata ="data: '0x'";
 
-                    std::string snoonce = "nonce: '0x1e7'";
-                    std::string sgasPrice = "gasPrice: '0x2e90edd000'"; // check against limit
-                    std::string sgasLimit = "gasLimit: '0x30d40'";
-                    std::string sto ="to: '0xbd064928cdd4fd67fb99880e6560978d7ca1'" ;
-                    std::string svalue = "value: '0xde0b6b3a7640000'";
-                    std::string sdata ="data: '0x'";
+    Keypair testPair = test->CreatePair();
 
-  qDebug() <<  test->CreateRawTransaction(snoonce,sgasPrice,sgasLimit,sto,svalue,sdata).c_str();
+    qDebug() << test->CreateRawTransaction(snoonce,sgasPrice,sgasLimit,sto,svalue,sdata, testPair.privateKey).c_str();
 
+    ui->toprivatekey->addItem(QString::fromStdString(testPair.privateKey));
 }
 
 
