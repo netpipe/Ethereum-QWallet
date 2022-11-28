@@ -1,8 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include <QSystemTrayIcon>
-
+#include <QNetworkReply>
 #include <QMainWindow>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -34,6 +35,17 @@ private slots:
     void on_messageverifybtn_clicked();
 
     void on_messagehashbtn_clicked();
+
+public:
+    void getTransactionCommand(std::string transaction_str);
+    void getTransactionInputCommand(std::string transaction_str);
+    void getTransactionOuputCommand(std::string transaction_str);
+    void sendTransactionCommand(std::string transaction_str);
+
+protected slots:
+    void getTransactionFinish(QNetworkReply *rep);
+    void sendTransactionFinish(QNetworkReply *rep);
+
 
 private:
     Ui::MainWindow *ui;

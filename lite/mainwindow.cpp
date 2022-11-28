@@ -8,10 +8,12 @@
 #include <QFile>
 #include <QJsonObject>
 #include <qstring.h>
-
+#include <QTextStream>
 #include <QStringListModel>
 
 #include "api.hpp"
+#include <QMessageBox>
+#include <QUrlQuery>
 
     Wrapper *wr=new Wrapper();
 
@@ -156,20 +158,10 @@ void MainWindow::on_pushButton_2_clicked()
 //	std::string HashMessage(std::string& msg);
 //std::string SignMessage(std::string& msgHash);
 
-
-
-//std::string Factory::CreateRawTransaction(
-//	std::string& nonce,
-//	std::string& gasPrice,
-//	std::string& gasLimit,
-//	std::string& to,
-//	std::string& value,
-//	std::string& data
-//)
-
 void MainWindow::on_tosendbrt_clicked()
 {
 //check if wallet loaded
+    //verify address
 
             std::string snoonce = "nonce: ";
                    snoonce +=ui->confignonce->text().toLatin1().toStdString();
@@ -184,18 +176,31 @@ void MainWindow::on_tosendbrt_clicked()
             std::string sdata ="data: ";
                     sdata+=ui->configdata->text().toStdString();
 
-//    std::string snoonce = "nonce: '0x1e7'";
-//    std::string sgasPrice = "gasPrice: '0x2e90edd000'"; // check against limit
-//    std::string sgasLimit = "gasLimit: '0x30d40'";
-//    std::string sto ="to: '0xbd064928cdd4fd67fb99880e6560978d7ca1'" ;
-//    std::string svalue = "value: '0xde0b6b3a7640000'";
-//    std::string sdata ="data: '0x'";
+//                    std::string snoonce = "nonce: '0x1e7'";
+//                    std::string sgasPrice = "gasPrice: '0x2e90edd000'"; // check against limit
+//                    std::string sgasLimit = "gasLimit: '0x30d40'";
+//                    std::string sto ="to: '0xbd064928cdd4fd67fb99880e6560978d7ca1'" ;
+//                    std::string svalue = "value: '0xde0b6b3a7640000'";
+//                    std::string sdata ="data: '0x'";
 
-    Keypair testPair = test->CreatePair();
+                    Factory *test = new Factory(wr, "testo");
+                    Keypair testPair = test->CreatePair();
+
+                    std::string transaction_result = test->CreateRawTransaction(snoonce, sgasPrice, sgasLimit, sto, svalue, sdata, testPair.privateKey);
 
     qDebug() << test->CreateRawTransaction(snoonce,sgasPrice,sgasLimit,sto,svalue,sdata, testPair.privateKey).c_str();
 
     ui->toprivatekey->addItem(QString::fromStdString(test->CreateRawTransaction(snoonce,sgasPrice,sgasLimit,sto,svalue,sdata, testPair.privateKey).c_str()));
+
+
+    Api api_test(wr);
+  //  api_test.RawTransaction(transaction_result);
+
+        getTransactionInputCommand("6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b");
+
+    delete test;
+    delete wr;
+
 }
 
 
@@ -237,3 +242,133 @@ void MainWindow::on_messagehashbtn_clicked()
        ui->hash->setText( test->HashMessage(test1).c_str());
 }
 
+
+
+void MainWindow::getTransactionCommand(std::string transaction_str)
+{
+    QNetworkAccessManager * mgr = new QNetworkAccessManager(this);
+    connect(mgr,SIGNAL(finished(QNetworkReply*)), this, SLOT(getTransactionFinish(QNetworkReply*)));
+
+    QString url_path ="https://dogechain.info/api/v1/transaction/";
+    url_path += QString::fromLatin1(transaction_str.c_str());
+
+    QUrl url(url_path);
+    QNetworkRequest request(url);
+
+    mgr->get(request);
+}
+
+void MainWindow::getTransactionInputCommand(std::string transaction_str)
+{
+    QNetworkAccessManager * mgr = new QNetworkAccessManager(this);
+    connect(mgr,SIGNAL(finished(QNetworkReply*)), this, SLOT(getTransactionFinish(QNetworkReply*)));
+
+    QString url_path ="https://chain.so/api/v2/get_tx_inputs/DOGE/";
+    url_path += QString::fromLatin1(transaction_str.c_str());
+
+    QUrl url(url_path);
+    QNetworkRequest request(url);
+
+
+    QString filename = "Data.txt";
+    QFile file2(filename);
+    if (file2.open(QIODevice::ReadWrite)) {
+        QTextStream stream(&file2);
+        stream <<    mgr->get(request) << endl;
+    }
+
+
+    //   QJsonObject jsonObj ;
+QJsonObject content;
+        QJsonDocument document;
+        document.setObject( content );
+        QFile file( "Data.txt" );
+
+        QString mName;
+
+
+
+
+
+       if( file.open( QIODevice::ReadOnly ) )
+       {
+           QByteArray bytes = file.readAll();
+           file.close();
+
+           QJsonParseError jsonError;
+           QJsonDocument document = QJsonDocument::fromJson( bytes, &jsonError );
+           if( jsonError.error != QJsonParseError::NoError )
+           {
+               qDebug() << "fromJson failed: " ;//<< jsonError.errorString().toStdString() << endl;
+               return ;
+           }
+           if( document.isObject() )
+           {
+               QJsonObject jsonObj = document.object();
+               if (jsonObj.contains("FirstName") && jsonObj["FirstName"].isString())
+                   mName = jsonObj["FirstName"].toString();
+
+               qDebug() << mName.toLatin1() << "test";
+           }
+        }
+
+
+
+}
+
+void MainWindow::getTransactionOuputCommand(std::string transaction_str)
+{
+    QNetworkAccessManager * mgr = new QNetworkAccessManager(this);
+    connect(mgr,SIGNAL(finished(QNetworkReply*)), this, SLOT(getTransactionFinish(QNetworkReply*)));
+
+    QString url_path ="https://chain.so/api/v2/get_tx_outputs/DOGE/";
+    url_path += QString::fromLatin1(transaction_str.c_str());
+
+    QUrl url(url_path);
+    QNetworkRequest request(url);
+
+    mgr->get(request);
+}
+
+void MainWindow::sendTransactionCommand(std::string transaction_str)
+{
+//    QNetworkAccessManager * mgr = new QNetworkAccessManager(this);
+//    connect(mgr,SIGNAL(finished(QNetworkReply*)), this, SLOT(sendTransactionFinish(QNetworkReply*)));
+
+//    QString url_path ="https://chain.so/api/v2/send_tx/DOGE";
+
+//    QUrl url(url_path);
+//    QNetworkRequest request(url);
+
+//    QUrlQuery params;
+//    params.addQueryItem("tx_hex", transaction_str.c_str());
+
+//    mgr->post(request, params.query().toUtf8());
+
+    QNetworkAccessManager * mgr = new QNetworkAccessManager(this);
+    connect(mgr,SIGNAL(finished(QNetworkReply*)), this, SLOT(sendTransactionFinish(QNetworkReply*)));
+
+    QString url_path ="https://dogechain.info/api/v1/pushtx";
+
+    QUrl url(url_path);
+    QNetworkRequest request(url);
+
+    QUrlQuery params;
+    params.addQueryItem("tx_hash", transaction_str.c_str());
+
+    mgr->post(request, params.query().toUtf8());
+}
+
+void MainWindow::getTransactionFinish(QNetworkReply *rep)
+{
+    QByteArray bts = rep->readAll();
+    QString str(bts);
+    QMessageBox::information(this, "Get Transcation", str, "ok");
+}
+
+void MainWindow::sendTransactionFinish(QNetworkReply *rep)
+{
+    QByteArray bts = rep->readAll();
+    QString str(bts);
+    QMessageBox::information(this, "Send Transcation", str, "ok");
+}
