@@ -372,3 +372,141 @@ void MainWindow::sendTransactionFinish(QNetworkReply *rep)
     QString str(bts);
     QMessageBox::information(this, "Send Transcation", str, "ok");
 }
+void MainWindow::Onload_db()
+{
+    while(ui->send_tb->rowCount()){
+        ui->send_tb->removeRow(0);
+    }
+    while(ui->receive_tb->rowCount())
+    {
+        ui->receive_tb->removeRow(0);
+    }
+    sendrecord_list.clear();
+    receiverecord_list.clear();
+    QSqlQuery query_send("SELECT * FROM Send_tb;");
+    int cnt = 0;
+    while (query_send.next())
+    {
+        int tb_id = query_send.value(0).toInt();
+        QString tb_addr = query_send.value(1).toString();
+        QString tb_name = query_send.value(2).toString();
+        QTableWidgetItem *item_addr = new QTableWidgetItem(tb_addr);
+        QTableWidgetItem *item_name = new QTableWidgetItem(tb_name);
+        ui->send_tb->insertRow(cnt);
+        ui->send_tb->setItem(cnt, 0, item_addr);
+        ui->send_tb->setItem(cnt, 1, item_name);
+        record_pattern record;
+        record.id = tb_id;
+        record.addr = tb_addr;
+        record.name = tb_name;
+        sendrecord_list.append(record);
+        cnt++;
+    }
+    QSqlQuery query_receive("SELECT * FROM Receive_tb;");
+    cnt = 0;
+    while (query_receive.next())
+    {
+        int tb_id = query_receive.value(0).toInt();
+        QString tb_addr = query_receive.value(1).toString();
+        QString tb_name = query_receive.value(2).toString();
+        QTableWidgetItem *item_addr = new QTableWidgetItem(tb_addr);
+        QTableWidgetItem *item_name = new QTableWidgetItem(tb_name);
+        ui->receive_tb->insertRow(cnt);
+        ui->receive_tb->setItem(cnt, 0, item_addr);
+        ui->receive_tb->setItem(cnt, 1, item_name);
+        record_pattern record;
+        record.id = tb_id;
+        record.addr = tb_addr;
+        record.name = tb_name;
+        receiverecord_list.append(record);
+        cnt++;
+    }
+
+}
+
+
+
+
+void MainWindow::on_addressadd_clicked()
+{
+    QString Addr_str = ui->addr_add->text();
+    QString Name_str = ui->name_add->text();
+    QString query_str = QString("INSERT INTO '%1'(Address, Name) VALUES ('%2', '%3');");
+    if(ui->tabWidget_2->currentWidget()==ui->send_tab)
+    {
+       query_str= query_str.arg("Send_tb").arg(Addr_str).arg(Name_str);
+        QSqlQuery query_add(query_str);
+    }
+    if(ui->tabWidget_2->currentWidget()==ui->receive_tab)
+    {
+        query_str=query_str.arg("Receive_tb").arg(Addr_str).arg(Name_str);
+        QSqlQuery query_add(query_str);
+    }
+    Onload_db();
+}
+
+void MainWindow::on_addressremove_clicked()
+{
+    QString query_str = QString("DELETE FROM '%1' WHERE id = %2;");
+    if(ui->tabWidget_2->currentWidget()==ui->send_tab)
+    {
+        int row_cnt = ui->send_tb->currentRow();
+        int id = sendrecord_list.at(row_cnt).id;
+        query_str= query_str.arg("Send_tb").arg(id);
+        QSqlQuery query_add(query_str);
+    }
+    if(ui->tabWidget_2->currentWidget()==ui->receive_tab)
+    {
+        int row_cnt = ui->receive_tb->currentRow();
+        int id = sendrecord_list.at(row_cnt).id;
+        query_str= query_str.arg("Receive_tb").arg(id);
+        QSqlQuery query_add(query_str);
+    }
+    Onload_db();
+}
+
+void MainWindow::on_addresssave_clicked()
+{
+    QString query_str = QString("UPDATE '%1' SET Address = '%2', Name = '%3' WHERE id = %4;");
+    if(ui->tabWidget_2->currentWidget()==ui->send_tab)
+    {
+        int row_cnt = ui->send_tb->currentItem()->row();
+        int id = sendrecord_list.at(row_cnt).id;
+
+        QString Addr_str_tab = ui->send_tb->item(row_cnt,0)->text();
+        QString Name_str_tab = ui->send_tb->item(row_cnt,1)->text();
+
+        QString addr_str_txt = ui->addr_add->text();
+        QString name_str_txt = ui->name_add->text();
+        if(Addr_str_tab != sendrecord_list.at(row_cnt).addr | Name_str_tab != sendrecord_list.at(row_cnt).name)
+        {
+            query_str= query_str.arg("Send_tb").arg(Addr_str_tab).arg(Name_str_tab).arg(id);
+        }
+        if(addr_str_txt != sendrecord_list.at(row_cnt).addr | name_str_txt != sendrecord_list.at(row_cnt).name)
+        {
+            query_str= query_str.arg("Send_tb").arg(addr_str_txt).arg(name_str_txt).arg(id);
+        }
+        QSqlQuery query_add(query_str);
+    }
+    if(ui->tabWidget_2->currentWidget()==ui->receive_tab)
+    {
+        int row_cnt = ui->receive_tb->currentItem()->row();
+        int id = receiverecord_list.at(row_cnt).id;
+
+        QString Addr_str_tab = ui->receive_tb->item(row_cnt,0)->text();
+        QString Name_str_tab = ui->receive_tb->item(row_cnt,1)->text();
+
+        QString addr_str_txt = ui->addr_add->text();
+        QString name_str_txt = ui->name_add->text();
+        if(Addr_str_tab != receiverecord_list.at(row_cnt).addr | Name_str_tab != receiverecord_list.at(row_cnt).name)
+        {
+            query_str= query_str.arg("Receive_tb").arg(Addr_str_tab).arg(Name_str_tab).arg(id);
+        }
+        if(addr_str_txt != receiverecord_list.at(row_cnt).addr | name_str_txt != receiverecord_list.at(row_cnt).name)
+        {
+            query_str= query_str.arg("Receive_tb").arg(addr_str_txt).arg(name_str_txt).arg(id);
+        }
+        QSqlQuery query_add(query_str);
+    }
+    Onload_db();
+}

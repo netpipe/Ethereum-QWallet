@@ -3,8 +3,10 @@
 #include <QSystemTrayIcon>
 #include <QNetworkReply>
 #include <QMainWindow>
-
-
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QList>
+#include <QNetworkAccessManager>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -12,6 +14,19 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+    class record_pattern
+    {
+    public:
+        int id;
+        QString addr;
+        QString name;
+    };
+
+public:
+    QNetworkAccessManager* manager;
+    void Onload_db();
+    QList<record_pattern> sendrecord_list;
+    QList<record_pattern> receiverecord_list;
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -36,6 +51,14 @@ private slots:
 
     void on_messagehashbtn_clicked();
 
+    void on_addressadd_clicked();
+
+    void on_addressremove_clicked();
+
+    void on_addresssave_clicked();
+
+
+
 public:
     void getTransactionCommand(std::string transaction_str);
     void getTransactionInputCommand(std::string transaction_str);
@@ -49,5 +72,7 @@ protected slots:
 
 private:
     Ui::MainWindow *ui;
+
+        QSqlDatabase m_db;
 };
 #endif // MAINWINDOW_H

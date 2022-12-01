@@ -6,106 +6,162 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>764</width>
+    <height>620</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_2">
+   <layout class="QGridLayout" name="gridLayout_5">
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
         <string>Address</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_5">
+       <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
          <widget class="QGroupBox" name="groupBox_2">
           <property name="title">
            <string>GroupBox</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
-           <item row="1" column="0">
-            <widget class="QLineEdit" name="lineEdit"/>
-           </item>
-           <item row="2" column="0">
-            <widget class="QPushButton" name="addressadd">
-             <property name="text">
-              <string>add</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <widget class="QPushButton" name="addressremove">
-             <property name="text">
-              <string>remove</string>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="0">
             <widget class="QTabWidget" name="tabWidget_2">
              <property name="currentIndex">
-              <number>2</number>
+              <number>0</number>
              </property>
-             <widget class="QWidget" name="tab_5">
+             <widget class="QWidget" name="send_tab">
               <attribute name="title">
                <string>Send</string>
               </attribute>
               <layout class="QGridLayout" name="gridLayout_6">
                <item row="0" column="0">
-                <widget class="QTableWidget" name="tableWidget">
+                <widget class="QTableWidget" name="send_tb">
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>350</number>
+                 </attribute>
                  <column>
                   <property name="text">
-                   <string>address</string>
+                   <string>Address</string>
                   </property>
                  </column>
                  <column>
                   <property name="text">
-                   <string>name</string>
+                   <string>Name</string>
                   </property>
                  </column>
                 </widget>
                </item>
               </layout>
              </widget>
-             <widget class="QWidget" name="tab_6">
+             <widget class="QWidget" name="receive_tab">
               <attribute name="title">
                <string>Receive</string>
               </attribute>
               <layout class="QGridLayout" name="gridLayout_7">
                <item row="0" column="0">
-                <widget class="QListWidget" name="listWidget"/>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QWidget" name="tab_7">
-              <attribute name="title">
-               <string>History</string>
-              </attribute>
-              <layout class="QGridLayout" name="gridLayout_11">
-               <item row="0" column="0">
-                <widget class="QTableWidget" name="tableWidget_2">
+                <widget class="QTableWidget" name="receive_tb">
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>350</number>
+                 </attribute>
                  <column>
                   <property name="text">
-                   <string>address</string>
+                   <string>Address</string>
                   </property>
                  </column>
                  <column>
                   <property name="text">
-                   <string>ammount</string>
+                   <string>Name</string>
                   </property>
                  </column>
                 </widget>
                </item>
               </layout>
              </widget>
+             <widget class="QWidget" name="tab_5">
+              <attribute name="title">
+               <string>History</string>
+              </attribute>
+              <widget class="QTableWidget" name="receive_tb_2">
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>30</y>
+                 <width>676</width>
+                 <height>339</height>
+                </rect>
+               </property>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>350</number>
+               </attribute>
+               <column>
+                <property name="text">
+                 <string>Address</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Name</string>
+                </property>
+               </column>
+              </widget>
+             </widget>
             </widget>
+           </item>
+           <item row="1" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QLabel" name="label_14">
+               <property name="text">
+                <string>Address</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="addr_add"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_15">
+               <property name="text">
+                <string>Name</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="name_add"/>
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QPushButton" name="addressadd">
+               <property name="text">
+                <string>add</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="addressremove">
+               <property name="text">
+                <string>remove</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="addresssave">
+               <property name="text">
+                <string>save</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -586,7 +642,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>764</width>
      <height>31</height>
     </rect>
    </property>
