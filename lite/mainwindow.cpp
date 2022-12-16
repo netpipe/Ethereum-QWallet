@@ -15,6 +15,16 @@
 #include <QMessageBox>
 #include <QUrlQuery>
 
+//'3'			=> array('rpc'=> 'https://rpc.ankr.com/eth_ropsten',	'name'=> 'Ropsten test network'),
+//'4'			=> array('rpc'=> 'https://rpc.ankr.com/eth_rinkeby',	'name'=> 'Rinkeby test network'),
+//'5'			=> array('rpc'=> 'https://rpc.ankr.com/eth_goerli',		'name'=> 'Goerli test network'),
+//'11155111'	=> array('rpc'=> 'https://nunki.htznr.fault.dev/rpc', 	'name'=> 'Sepolia test network'),
+//'97'		=> array('rpc'=> 'https://nunki.htznr.fault.dev/rpc',	'name'=> 'Binance Smart Chain Testnet '),
+//'31337'		=> array('rpc'=> 'http://localhost:8545', 'name'=> 'Localhost:8545'),
+//'1337'		=> array('rpc'=> 'http://localhost:8545', 'name'=> 'Localhost:8545'),
+//'2000'      => array('rpc'=> 'https://rpc-us.dogechain.dog', 'name'=> 'Dogechain Mainnet')
+
+
     Wrapper *wr=new Wrapper();
 
     Factory *test=new Factory(wr,"testo");
@@ -55,7 +65,8 @@ QJsonObject content;
 
         QString mName;
 
-
+        m_db = QSqlDatabase::addDatabase("QSQLITE");
+        createTable("./address_book.db");
 
 
 
@@ -509,4 +520,42 @@ void MainWindow::on_addresssave_clicked()
         QSqlQuery query_add(query_str);
     }
     Onload_db();
+}
+void MainWindow::createTable(QString DBname)
+{
+    m_db.setDatabaseName(DBname.toLatin1());
+
+    if(m_db.open())
+    {
+        qDebug()<<"Successful coin database connection";
+    }
+    else
+    {
+        qDebug()<<"Error: failed database connection";
+    }
+
+    QString query;
+    query.append("CREATE TABLE IF NOT EXISTS Send_tb("
+                 "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                 "Address VARCHAR(50),""Name VARCHAR(50));");
+    query.append("CREATE TABLE IF NOT EXISTS Receive_tb("
+                 "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                 "Address VARCHAR(50),""Name VARCHAR(50));");
+    QSqlQuery create;
+
+    create.prepare(query);
+
+    if (create.exec())
+    {
+        qDebug()<<"Table exists or has been created";
+    }
+    else
+    {
+        qDebug()<<"Table not exists or has not been created";
+        //qDebug()<<"ERROR! "<< create.lastError();
+    }
+
+    query.clear();
+ //   db.close();
+
 }

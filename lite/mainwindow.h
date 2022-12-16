@@ -28,6 +28,7 @@ public:
     QList<record_pattern> sendrecord_list;
     QList<record_pattern> receiverecord_list;
 
+    void createTable(QString);
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
